@@ -1,0 +1,232 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+   
+    <title>Search Engine</title>
+    <script src="https://kit.fontawesome.com/5509358c7f.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <style>
+
+        *{
+    margin: 0;
+}
+
+body{
+    
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+.footer{
+font-size: 10px;
+text-align: center;
+}
+
+.header{
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 30px;
+    align-items: center;
+}
+
+.header a{
+    margin-right: 20px;
+    color: rgba(0, 0, 0, 0.87);
+    font-size: 15px;
+    text-decoration: inherit;
+}
+
+.header a:hover{
+    text-decoration: underline;
+}
+
+.header_right{
+    display: flex;
+    align-items: center;
+    min-width: 13vw;
+    justify-content: space-between;
+}
+
+.header_right .header_app{
+    margin-right: 10px;
+}
+
+
+.mainbody{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    margin-top: 3%;
+}
+
+.mainbody img{
+    object-fit: contain;
+    height: 100px;
+    
+    
+}
+
+
+.search_input{
+    display: flex;
+    align-items: center;
+    border: 1px solid black;
+    height: 30px;
+    padding: 10px 20px;
+    border-radius: 999px;
+    margin-top: 40px;
+    width: 40vw;
+    margin: 0 auto;
+    max-width: 560px;
+}
+
+
+.search_input input{
+    flex: 1;
+    padding: 10px 20px;
+    border: none;
+    outline: none;
+}
+
+
+.search_input .material-icons{
+    color: grey;
+}
+
+
+.search_button{
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+
+.search_button button{
+    margin: 5px;
+    padding: 10px 15px;
+    background-color:  #f8f8f8;
+    outline: black;
+    border: 1px solid black;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+/* done!!! */
+ 
+
+    </style>
+</head>
+
+<body>
+
+<div class="header">
+
+    <div class="header_left">
+        <a href="#"></a>
+        <a href="#"></a>
+    </div>
+
+    <div class="header_right">
+        <!--<a href="https://myaccount.google.com/?utm_source=sign_in_no_continue&pli=1">Gmail</a>
+        <a href="">images</a>
+        <a href="#"> <span class="material-icons header_app"> apps</span></a>
+        <a href="#"> <span class="material-icons"> account_circle</span></a>-->
+        <div id="google_translate_element"></div>
+    </div>
+</div>
+
+<div class="mainbody">
+    <!--<img src="{% static 'search/google_img.png' %}" alt="My image">-->
+    <img src="{%static 'search/search.jpg' %}" alt="my image">
+
+
+            <form action="search" method="POST">
+                 {% csrf_token %}
+                <div class="search">
+                    <div class="search_input">
+                       <!-- <span class="material-icons">search</span>-->
+                       
+                       <i class="fa-solid fa-magnifying-glass"></i>
+
+                        <input type="text" name="search" id="speechtotext" class="input" autofocus x-webkit-speech placeholder="enter your query">
+                        
+                    
+                        <div>
+                         <i class="fa-solid fa-microphone" id="speechtotext" onclick="record()"></i>
+                        </div> 
+                    </div>
+                    
+
+                    <div class="search_button">
+                        <a href="" ><button type="submit">search</button></a>
+                        <button>clear search</button>
+                    </div>
+                </div>
+            </form>
+
+        
+           <script>
+                function record() {
+                    var recognition = new webkitSpeechRecognition();
+                    recognition.lang = "en-GB";
+                    recognition.onresult = function (event) {
+                        document.getElementById('speechtotext').value = event.results[0][0].transcript;
+                    }
+                    recognition.start();
+                }</script>
+                <script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+
+                <script>
+                const options = {
+                    bottom: '5px', // default: '32px'
+                    right: '5px', // default: '32px'
+                    left: 'unset', // default: 'unset'
+                    time: '0.20s', // default: '0.3s'
+                    mixColor: '#fff', // default: '#fff'
+                    backgroundColor: '#fff',  // default: '#fff'
+                    buttonColorDark: '#100f2c',  // default: '#100f2c'
+                    buttonColorLight: '#fff', // default: '#fff'
+                    saveInCookies: false, // default: true,
+                    label: '🌓', // default: ''
+                    autoMatchOsTheme: true // default: true
+                  }
+                  
+                  
+                  const darkmode = new Darkmode(options);
+                  darkmode.showWidget();
+                  
+                 
+                
+            </script>
+            
+            <script type="text/javascript">
+                function googleTranslateElementInit() {
+                  new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+                }
+                </script>
+              
+
+
+</div>
+<div class="footer">
+   
+    
+    
+    <script src="https://apps.elfsight.com/p/platform.js" defer></script>
+<div class="elfsight-app-c01ea4a2-0ec6-4f3d-9c87-ae306c7a1eea"></div>
+    
+    <p class="f2">Design with &hearts;	by <a href="https://www.linkedin.com/in/shruti-bhavsar-808a26233/">Shruti Bhavsar</a> & <a href="https://www.linkedin.com/in/yogesh-patil-95bb92237/">Yogesh Patil</a></p>
+    <br>
+
+</div>
+</body>
+
+</html>
